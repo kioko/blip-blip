@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D612DF111C6653D4000BFB60 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612DF101C6653D4000BFB60 /* TableViewController.swift */; };
+		D612DF1A1C667897000BFB60 /* ScreenShots in Resources */ = {isa = PBXBuildFile; fileRef = D612DF191C667897000BFB60 /* ScreenShots */; };
 		D623A4E61C6492B300478239 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623A4E51C6492B300478239 /* AppDelegate.swift */; };
 		D623A4E81C6492B300478239 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623A4E71C6492B300478239 /* ViewController.swift */; };
 		D623A4EB1C6492B300478239 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623A4E91C6492B300478239 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		D612DF0E1C665302000BFB60 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D612DF101C6653D4000BFB60 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		D612DF191C667897000BFB60 /* ScreenShots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScreenShots; sourceTree = "<group>"; };
 		D623A4E21C6492B300478239 /* Blip Blip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blip Blip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D623A4E51C6492B300478239 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D623A4E71C6492B300478239 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				D65D9AB61C662AF30096B6A0 /* Frameworks */,
 				D623A4F91C6492B300478239 /* Blip BlipTests */,
 				D623A4E31C6492B300478239 /* Products */,
+				D612DF191C667897000BFB60 /* ScreenShots */,
 				D612DF0E1C665302000BFB60 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D612DF1A1C667897000BFB60 /* ScreenShots in Resources */,
 				D623A4F01C6492B300478239 /* LaunchScreen.storyboard in Resources */,
 				D623A4ED1C6492B300478239 /* Assets.xcassets in Resources */,
 				D623A4EB1C6492B300478239 /* Main.storyboard in Resources */,
