@@ -11,12 +11,12 @@
         <scene sceneID="Cfi-Jo-BmC">
             <objects>
                 <tableViewController id="VML-Dx-6rh" customClass="TableViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xby-AN-0Ff">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xby-AN-0Ff">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="dVM-LY-n3g">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="dVM-LY-n3g">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dVM-LY-n3g" id="fo2-vd-3Ca">
@@ -36,7 +36,7 @@
                     <navigationItem key="navigationItem" title="Favorite Places" id="gC4-nU-8ms">
                         <barButtonItem key="rightBarButtonItem" image="add" id="CwU-DS-QGo">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="7fc-a3-x32"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="newPlace" id="7fc-a3-x32"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-1210.5" y="116"/>
         </scene>
-        <!--Map View Conroller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Map View Conroller" id="BYZ-38-t0r" customClass="ViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -120,6 +120,6 @@
         <image name="add" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EQN-L4-ALw"/>
+        <segue reference="7fc-a3-x32"/>
     </inferredMetricsTieBreakers>
 </document>
