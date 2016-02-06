@@ -23,6 +23,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="EQN-L4-ALw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -58,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-1210.5" y="116"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Conroller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map View Conroller" id="BYZ-38-t0r" customClass="ViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -116,4 +119,7 @@
     <resources>
         <image name="add" width="29" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EQN-L4-ALw"/>
+    </inferredMetricsTieBreakers>
 </document>
