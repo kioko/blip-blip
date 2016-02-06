@@ -13,6 +13,7 @@
 		D623A4ED1C6492B300478239 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D623A4EC1C6492B300478239 /* Assets.xcassets */; };
 		D623A4F01C6492B300478239 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623A4EE1C6492B300478239 /* LaunchScreen.storyboard */; };
 		D623A4FB1C6492B300478239 /* Blip_BlipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623A4FA1C6492B300478239 /* Blip_BlipTests.swift */; };
+		D65D9AB41C6626CF0096B6A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D9AB31C6626CF0096B6A0 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +33,11 @@
 		D623A4EA1C6492B300478239 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D623A4EC1C6492B300478239 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D623A4EF1C6492B300478239 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D623A4F11C6492B300478239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D623A4F11C6492B300478239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Blip Blip/Info.plist"; sourceTree = "<group>"; };
 		D623A4F61C6492B300478239 /* Blip BlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Blip BlipTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D623A4FA1C6492B300478239 /* Blip_BlipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blip_BlipTests.swift; sourceTree = "<group>"; };
 		D623A4FC1C6492B300478239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D65D9AB31C6626CF0096B6A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D65D9AB41C6626CF0096B6A0 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				D623A4E41C6492B300478239 /* Blip Blip */,
+				D65D9AB61C662AF30096B6A0 /* Frameworks */,
 				D623A4F91C6492B300478239 /* Blip BlipTests */,
 				D623A4E31C6492B300478239 /* Products */,
 			);
@@ -82,7 +86,7 @@
 				D623A4E91C6492B300478239 /* Main.storyboard */,
 				D623A4EC1C6492B300478239 /* Assets.xcassets */,
 				D623A4EE1C6492B300478239 /* LaunchScreen.storyboard */,
-				D623A4F11C6492B300478239 /* Info.plist */,
+				D65D9AB51C66270C0096B6A0 /* Supporting Files */,
 			);
 			path = "Blip Blip";
 			sourceTree = "<group>";
@@ -94,6 +98,23 @@
 				D623A4FC1C6492B300478239 /* Info.plist */,
 			);
 			path = "Blip BlipTests";
+			sourceTree = "<group>";
+		};
+		D65D9AB51C66270C0096B6A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D623A4F11C6492B300478239 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D65D9AB61C662AF30096B6A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D65D9AB31C6626CF0096B6A0 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +407,7 @@
 				D623A5011C6492B300478239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D623A5021C6492B300478239 /* Build configuration list for PBXNativeTarget "Blip BlipTests" */ = {
 			isa = XCConfigurationList;
@@ -394,6 +416,7 @@
 				D623A5041C6492B300478239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
