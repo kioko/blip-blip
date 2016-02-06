@@ -126,14 +126,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         }
                         
                         if placeMark.subThoroughfare != nil{
-                            subThoroughfare = placeMark.subThoroughfare!
+                            subThoroughfare = "\(placeMark.subThoroughfare!) -"
                         }
                         
                         if placeMark.country != nil{
                             country = placeMark.country!
                         }
                         
-                        title = "\(subThoroughfare) - \(thoroughfare)"
+                        title = "\(subThoroughfare)\(thoroughfare)"
                         
                         //Append place information to Place array
                         places.append(["name":title, "lat":"\(location.latitude)",
