@@ -8,13 +8,22 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Get the users location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         let latitude :CLLocationDegrees = -1.2921
         let longitude :CLLocationDegrees = 36.8219
@@ -58,8 +67,34 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    //Handles the guesture action. This allows the user to add annotations to 
-    // the map by long pressing the map on Long press.
+    //This method is called when the users location changes
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        //convert the location to CLLocation
+        let userLocation : CLLocation = locations[0] as CLLocation
+        
+        //Extract latitude
+        let latitude = userLocation.coordinate.latitude
+        //Extract logitude
+        let longitude = userLocation.coordinate.longitude
+        
+        //Difference between one side of the screen ot the other/ Zoom in
+        let latDelata : CLLocationDegrees = 0.01
+        let longDelata : CLLocationDegrees = 0.01
+        
+        let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
+        
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        self.mapView.setRegion(mapRegion, animated: true)
+        
+        
+    }
+    
+    //Handles the guesture action. This allows the user to add annotations to
+    //the map by long pressing the map on Long press.
     func gestureAction(gestureRecognizer : UIGestureRecognizer){
         
         //Get the location of where the user has long pressed
