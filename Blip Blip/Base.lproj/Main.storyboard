@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="f1b-zO-G8L">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Favorite Places-->
+        <scene sceneID="Cfi-Jo-BmC">
+            <objects>
+                <tableViewController id="VML-Dx-6rh" customClass="TableViewController" customModule="Blip_Blip" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xby-AN-0Ff">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="dVM-LY-n3g">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dVM-LY-n3g" id="fo2-vd-3Ca">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VML-Dx-6rh" id="jSH-JU-3VV"/>
+                            <outlet property="delegate" destination="VML-Dx-6rh" id="bt1-ED-9u1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorite Places" id="gC4-nU-8ms">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="CwU-DS-QGo">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="7fc-a3-x32"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VxE-1e-asq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-280.5" y="116"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9fn-aa-cQX">
+            <objects>
+                <navigationController id="f1b-zO-G8L" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="voT-WA-Bn2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VML-Dx-6rh" kind="relationship" relationship="rootViewController" id="Lcu-ZM-CyH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="meb-5N-CzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1210.5" y="116"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -34,10 +86,10 @@
                                 <exclude reference="0D5-29-Veg"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="oKB-LM-oGr"/>
                                 <exclude reference="4dl-X6-aQO"/>
                                 <exclude reference="O4Q-0a-Oix"/>
                                 <exclude reference="Pob-NQ-ov4"/>
-                                <exclude reference="oKB-LM-oGr"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -45,10 +97,10 @@
                                 <include reference="0D5-29-Veg"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="oKB-LM-oGr"/>
                                 <include reference="4dl-X6-aQO"/>
                                 <include reference="O4Q-0a-Oix"/>
                                 <include reference="Pob-NQ-ov4"/>
-                                <include reference="oKB-LM-oGr"/>
                             </mask>
                         </variation>
                     </view>
@@ -58,7 +110,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="339"/>
+            <point key="canvasLocation" x="561" y="116"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="29" height="29"/>
+    </resources>
 </document>
