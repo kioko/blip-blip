@@ -14,6 +14,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var latitude :CLLocationDegrees = 0.0
+    var longitude :CLLocationDegrees = 0.0
+    
+    //Difference between one side of the screen ot the other/ Zoom in
+    let latDelata : CLLocationDegrees = 0.01
+    let longDelata : CLLocationDegrees = 0.01
+    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -25,17 +32,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        let latitude :CLLocationDegrees = -1.2921
-        let longitude :CLLocationDegrees = 36.8219
-        
-        
-        //Difference between one side of the screen ot the other/ Zoom in
-        let latDelata : CLLocationDegrees = 0.01
-        let longDelata : CLLocationDegrees = 0.01
-        
         let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
         
-        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.latitude, self.longitude)
         
         let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
@@ -74,21 +73,39 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let userLocation : CLLocation = locations[0] as CLLocation
         
         //Extract latitude
-        let latitude = userLocation.coordinate.latitude
+        self.latitude = userLocation.coordinate.latitude
         //Extract logitude
-        let longitude = userLocation.coordinate.longitude
-        
-        //Difference between one side of the screen ot the other/ Zoom in
-        let latDelata : CLLocationDegrees = 0.01
-        let longDelata : CLLocationDegrees = 0.01
+        self.longitude = userLocation.coordinate.longitude
         
         let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
         
-        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.latitude, self.longitude)
         
         let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         self.mapView.setRegion(mapRegion, animated: true)
+        
+        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placeMarks, errors) -> Void in
+            
+            if(errors != nil){
+                print(errors)
+            }else{
+                
+                //Check if placeMarks contains data
+                if let placeMark = placeMarks?[0] {
+                    
+                    print(placeMark.country)
+                    print(placeMark.postalCode)
+                    print(placeMark.subAdministrativeArea)
+                    print(placeMark.subLocality)
+                    print(placeMark.thoroughfare)
+                    
+                    if placeMark.subThoroughfare != nil{
+                         print(placeMark.subThoroughfare)
+                    }
+                }
+            }
+        })
         
         
     }
