@@ -14,42 +14,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var latitude :CLLocationDegrees = 0.0
-    var longitude :CLLocationDegrees = 0.0
+    var latitude :CLLocationDegrees!
+    var longitude :CLLocationDegrees!
     
     //Difference between one side of the screen ot the other/ Zoom in
     let latDelata : CLLocationDegrees = 0.01
     let longDelata : CLLocationDegrees = 0.01
     
-    var locationManager = CLLocationManager()
+    var locationManager : CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Get the users location
+        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
-        
-        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.latitude, self.longitude)
-        
-        let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        
-        mapView.setRegion(mapRegion, animated: true)
-        
-        //Add annotations
-        let annotation = MKPointAnnotation()
-        
-        //Annotaion Attributes
-        annotation.coordinate = location
-        annotation.title = "Ihub"
-        annotation.subtitle = "The Geek Dome"
-        
-        //add the annotation to the map
-        mapView.addAnnotation(annotation)
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: "gestureAction:")
         
@@ -84,28 +67,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         self.mapView.setRegion(mapRegion, animated: true)
-        
-        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placeMarks, errors) -> Void in
-            
-            if(errors != nil){
-                print(errors)
-            }else{
-                
-                //Check if placeMarks contains data
-                if let placeMark = placeMarks?[0] {
-                    
-                    print(placeMark.country)
-                    print(placeMark.postalCode)
-                    print(placeMark.subAdministrativeArea)
-                    print(placeMark.subLocality)
-                    print(placeMark.thoroughfare)
-                    
-                    if placeMark.subThoroughfare != nil{
-                         print(placeMark.subThoroughfare)
-                    }
-                }
-            }
-        })
+        self.mapView.showsUserLocation = true
         
         
     }
@@ -114,23 +76,62 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //the map by long pressing the map on Long press.
     func gestureAction(gestureRecognizer : UIGestureRecognizer){
         
-        //Get the location of where the user has long pressed
-        let touchPoint = gestureRecognizer.locationInView(self.mapView)
-        
-        //convert the touch point to coordinates
-        let location : CLLocationCoordinate2D = mapView.convertPoint(touchPoint,
-            toCoordinateFromView: self.mapView)
-        
-        //Add the annotation to the map
-        let annotation = MKPointAnnotation()
-        
-        //Annotaion Attributes
-        annotation.coordinate = location
-        annotation.title = "Blip"
-        annotation.subtitle = "New location"
-        
-        //add the annotation to the map
-        mapView.addAnnotation(annotation)
+        //check if user has long pressed
+        if gestureRecognizer.state == UIGestureRecognizerState.Began{
+            
+            //Get the location of where the user has long pressed
+            let touchPoint = gestureRecognizer.locationInView(self.mapView)
+            
+            //convert the touch point to coordinates
+            let location : CLLocationCoordinate2D = mapView.convertPoint(touchPoint,
+                toCoordinateFromView: self.mapView)
+            
+            let locationCoordinate = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            
+            CLGeocoder().reverseGeocodeLocation(locationCoordinate, completionHandler: {(placeMarks, errors) -> Void in
+                
+                var title:String = ""
+                var country:String = ""
+                var thoroughfare:String = ""
+                var subThoroughfare:String = ""
+                
+                if(errors != nil){
+                    print(errors)
+                }else{
+                    
+                    //Check if placeMarks contains data
+                    if let placeMark = placeMarks?[0] {
+                        
+                        //Add the annotation to the map
+                        let annotation = MKPointAnnotation()
+                    
+                        if placeMark.thoroughfare != nil{
+                            thoroughfare = placeMark.thoroughfare!
+                        }
+                        
+                        if placeMark.subThoroughfare != nil{
+                            subThoroughfare = placeMark.subThoroughfare!
+                        }
+                        
+                        if placeMark.country != nil{
+                            country = placeMark.country!
+                        }
+                        
+                        title = "\(subThoroughfare) - \(thoroughfare)"
+                        
+                        //Annotaion Attributes
+                        annotation.coordinate = location
+                        annotation.title = title
+                        annotation.subtitle = country
+                        
+                        //add the annotation to the map
+                        self.mapView.addAnnotation(annotation)
+                    }
+                }
+            })
+            
+            
+        }
     }
     
     
