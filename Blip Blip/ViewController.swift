@@ -30,9 +30,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
         
+        if activePlace == -1{
+            
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            
+        }else{ //get the location of the item the user tapped on from the tableview
+            
+            let latitude = NSString(string: places[activePlace]["lat"]!).doubleValue
+            let longitude = NSString(string: places[activePlace]["lon"]!).doubleValue
+            
+            let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
+            let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+            
+            self.mapView.setRegion(mapRegion, animated: true)
+            
+            //Annotaion Attributes
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = places[activePlace]["name"]
+            
+            //add the annotation to the map
+            self.mapView.addAnnotation(annotation)
+        }
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: "gestureAction:")
         
@@ -61,14 +83,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.longitude = userLocation.coordinate.longitude
         
         let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelata, longDelata)
-        
         let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.latitude, self.longitude)
-        
         let mapRegion : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         self.mapView.setRegion(mapRegion, animated: true)
         self.mapView.showsUserLocation = true
-        
         
     }
     
@@ -102,9 +121,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     //Check if placeMarks contains data
                     if let placeMark = placeMarks?[0] {
                         
-                        //Add the annotation to the map
-                        let annotation = MKPointAnnotation()
-                    
                         if placeMark.thoroughfare != nil{
                             thoroughfare = placeMark.thoroughfare!
                         }
@@ -119,7 +135,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         
                         title = "\(subThoroughfare) - \(thoroughfare)"
                         
+                        //Append place information to Place array
+                        places.append(["name":title, "lat":"\(location.latitude)",
+                            "lon": "\(location.longitude)"])
+                        
                         //Annotaion Attributes
+                        let annotation = MKPointAnnotation()
                         annotation.coordinate = location
                         annotation.title = title
                         annotation.subtitle = country
@@ -129,11 +150,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     }
                 }
             })
-            
-            
         }
     }
-    
-    
 }
 
